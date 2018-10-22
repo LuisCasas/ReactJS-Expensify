@@ -1,2 +1,0 @@
-# expensify
-React Web App
