@@ -5,7 +5,7 @@ const addExpense = ( {
             description = '', 
             note = '', 
             amount = 0,
-            createAt = 0
+            createdAt = 0
         } = {}
     ) => ({
     type: 'ADD_EXPENSE',
@@ -14,7 +14,7 @@ const addExpense = ( {
         description, 
         note, 
         amount,
-        createAt       
+        createdAt       
     }
 });
 
@@ -52,14 +52,14 @@ const setEndDate = (endDate) => ({
     endDate
 });
 
-const expensesReducerDefaultState = [];
-
 const filtersReducerDefaultState = {
     text: '',
     sort: 'date',
     startDate: undefined,
     endDate: undefined
 };
+
+const expensesReducerDefaultState = [];
 
 const expensesReducer = (state = expensesReducerDefaultState, action) => {
     switch(action.type){
@@ -118,37 +118,56 @@ const filtersReducer = (state = filtersReducerDefaultState, action) => {
   }
 };
 
+const getVisibleExpenses = (expenses, {text, sort, startDate, endDate}) => {
+    return expenses.filter((expense) => {
+        const startDateMatch = typeof startDate !== 'number' || expense.createdAt >= startDate;
+        const endDateMatch = typeof endDate !== 'number' || expense.createdAt <= endDate;
+        const textMatch = expense.description.toLowerCase().includes(text.toLowerCase());
+
+        return startDateMatch && endDateMatch && textMatch;
+    }).sort((a, b) => {
+        if(sort === 'date'){
+            return a.createdAt < b.createdAt ? 1 : -1;
+        } else if(sort === 'amount'){
+            return a.amount < b.amount ? 1 : -1;
+        }
+    });
+};
+
 const store = createStore(combineReducers({
         expenses: expensesReducer,
         filters: filtersReducer
-    })
-);
+}));
 
 store.subscribe(() => {
-    console.log(store.getState());
+
+    const state = store.getState();
+    const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
+
+    console.log(visibleExpenses);
 });
 
-const expenseOne = store.dispatch(addExpense({description: 'Flight', amount: 100}));
-const expenseTwo = store.dispatch(addExpense({description: 'Train', amount: 200}));
+const expenseOne = store.dispatch(addExpense({description: 'Flight', amount: 100, createdAt: -10000}));
+const expenseTwo = store.dispatch(addExpense({description: 'Train', amount: 200, createdAt: -2000}));
 
-store.dispatch(removeExpense({id: expenseOne.expense.id}));
+// store.dispatch(removeExpense({id: expenseOne.expense.id}));
 
-store.dispatch(editExpense(expenseTwo.expense.id, {amount: 150}));
+// store.dispatch(editExpense(expenseTwo.expense.id, {amount: 150}));
 
-console.log(store.getState());
+// console.log(store.getState());
 
-store.dispatch(setTextFilter('rent'));
-store.dispatch(setTextFilter());
+// store.dispatch(setTextFilter('train'));
+// store.dispatch(setTextFilter());
 
-console.log('---------------')
+// console.log('---------------')
 
 store.dispatch(sortByAmount());
-store.dispatch(sortByDate());
+// store.dispatch(sortByDate());
 
-store.dispatch(setStartDate(125));
-store.dispatch(setStartDate());
-store.dispatch(setEndDate(1250));
-store.dispatch(setEndDate());
+// store.dispatch(setStartDate(-10));
+// store.dispatch(setStartDate());
+// store.dispatch(setEndDate(-1250));
+// store.dispatch(setEndDate());
 
 const demoState = {
     expenses: [{
