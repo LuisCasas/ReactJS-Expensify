@@ -3,7 +3,7 @@ const public_dir = path.join(__dirname, 'public');
 
 module.exports = {
     // entry: './src/app.js',
-    entry: './src/app.js',
+    entry: './src/playground/hoc.js',
     output: {
         path: public_dir,
         filename: 'bundle.js'
