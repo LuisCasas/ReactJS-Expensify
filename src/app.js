@@ -12,8 +12,8 @@ import './styles/styles.scss';
 
 const store = configureStore();
 
-const expenseOne = store.dispatch(addExpense({description: 'Travel Flight', amount: 100, createdAt: -10000}));
-const expenseTwo = store.dispatch(addExpense({description: 'Travel Train', amount: 200, createdAt: -2000}));
+const expenseOne = store.dispatch(addExpense({description: 'Travel Flight', amount: 100, createdAt: 10000}));
+const expenseTwo = store.dispatch(addExpense({description: 'Travel Train', amount: 200, createdAt: 2000}));
 
 store.dispatch(setTextFilter('travel'));
 
