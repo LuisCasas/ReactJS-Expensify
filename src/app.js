@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import AppRouter from './routers/AppRouter';
 import configureStore from './store/configure';
 import {addExpense} from './actions/expenses';
@@ -24,8 +25,16 @@ store.subscribe(() => {
     console.log(visibleExpenses);
 });
 
+setTimeout(() => {
+    store.dispatch(setTextFilter('flight'));
+}, 3000);
 
+const jsx = (
+    <Provider store={store} >
+        <AppRouter />
+    </Provider>
+);
 
 // console.log(store.getState());
 
-ReactDOM.render(<AppRouter />, document.getElementById('app'));
+ReactDOM.render(jsx, document.getElementById('app'));
