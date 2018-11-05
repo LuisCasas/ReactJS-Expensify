@@ -25,9 +25,10 @@ store.subscribe(() => {
     console.log(visibleExpenses);
 });
 
-setTimeout(() => {
-    store.dispatch(setTextFilter('flight'));
-}, 3000);
+
+// setTimeout(() => {
+//     store.dispatch(setTextFilter('flight'));
+// }, 3000);
 
 const jsx = (
     <Provider store={store} >
