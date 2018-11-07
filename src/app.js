@@ -12,23 +12,16 @@ import './styles/styles.scss';
 
 const store = configureStore();
 
-const expenseOne = store.dispatch(addExpense({description: 'Travel Flight', amount: 100, createdAt: 10000}));
-const expenseTwo = store.dispatch(addExpense({description: 'Travel Train', amount: 200, createdAt: 2000}));
+store.dispatch(addExpense({description: 'Travel Flight', amount: 100, createdAt: 10000}));
+store.dispatch(addExpense({description: 'Travel Train', amount: 200, createdAt: 2000}));
+store.dispatch(addExpense({description: 'Breakfast', amount: 10, createdAt: 2200}));
 
-store.dispatch(setTextFilter('travel'));
+// store.dispatch(setTextFilter('travel'));
 
-store.subscribe(() => {
+const state = store.getState();
+const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
 
-    const state = store.getState();
-    const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
-
-    console.log(visibleExpenses);
-});
-
-
-// setTimeout(() => {
-//     store.dispatch(setTextFilter('flight'));
-// }, 3000);
+console.log(visibleExpenses);
 
 const jsx = (
     <Provider store={store} >
