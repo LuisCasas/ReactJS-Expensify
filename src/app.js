@@ -31,4 +31,4 @@ const jsx = (
 
 // console.log(store.getState());
 
-ReactDOM.render(jsx, document.getElementById('app'));
+ReactDOM.render(jsx, document.getElementById('app')); 
