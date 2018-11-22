@@ -12,9 +12,9 @@ import './styles/styles.scss';
 
 const store = configureStore();
 
-store.dispatch(addExpense({description: 'Travel Flight', amount: 100, createdAt: 10000}));
-store.dispatch(addExpense({description: 'Travel Train', amount: 200, createdAt: 2000}));
-store.dispatch(addExpense({description: 'Breakfast', amount: 10, createdAt: 2200}));
+store.dispatch(addExpense({description: 'Travel Flight', amount: 100, createdAt: 1000000}));
+store.dispatch(addExpense({description: 'Travel Train', amount: 200, createdAt: 2000000}));
+store.dispatch(addExpense({description: 'Breakfast', amount: 10, createdAt: 22000000}));
 
 // store.dispatch(setTextFilter('travel'));
 
