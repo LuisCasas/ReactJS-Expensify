@@ -37,11 +37,13 @@ test('Should sort by date', () => {
 
 
 test('Should set Text filter with string', () => {
-    const action = setTextFilter('rent');
+    
+    const text = 'rent';
+    const action = setTextFilter(text);
 
     expect(action).toEqual({
         type: 'SET_TEXT_FILTER',
-        text: 'rent'
+        text
     });
 });
 
