@@ -33,3 +33,47 @@ test('Should set sort by date', () => {
 
     expect(state.sort).toBe('date');
 });
+
+test('Should set start date', () => {
+   
+    const date = moment().startOf('month');
+
+    const currentState = {
+        text: '',
+        startDate: undefined,
+        endDate: undefined,
+        sort: 'date'
+    };   
+
+    const action = {
+        type: 'SET_START_DATE',
+        startDate: date
+    };
+
+    const state = filterReducer(currentState, action);
+
+    expect(state.startDate).toBe(date);
+
+});
+
+test('Should set end date', () => {
+   
+    const date = moment().startOf('month');
+
+    const currentState = {
+        text: '',
+        startDate: undefined,
+        endDate: undefined,
+        sort: 'date'
+    };   
+
+    const action = {
+        type: 'SET_END_DATE',
+        endDate: date
+    };
+
+    const state = filterReducer(currentState, action);
+
+    expect(state.endDate).toBe(date);
+
+});
