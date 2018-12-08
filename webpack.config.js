@@ -3,7 +3,6 @@ const public_dir = path.join(__dirname, 'public');
 
 module.exports = {
     entry: './src/app.js',
-    // entry: './src/playground/hoc.js',
     output: {
         path: public_dir,
         filename: 'bundle.js'
@@ -12,7 +11,7 @@ module.exports = {
         rules: [{
             loader: 'babel-loader',
             test: /\.js$/,
-            exclude: /node_module/
+            exclude: /node_modules/
         }, {
             test: /\.s?css$/,
             use: [
