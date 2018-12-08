@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-const ExpenseItem = ({id, description, amount, createdAt, dispatch}) => (
+const ExpenseItem = ({id, description, amount, createdAt}) => (
     <div>
         <Link to={`/edit/${id}`} >Edit</Link>
         <p>Description: {description}</p>
