@@ -13,3 +13,55 @@ test('Should render ExpenseForm component with values from a expense', () => {
     const wrapper = shallow(<ExpenseForm expense={expenses[0]} />);
     expect(wrapper).toMatchSnapshot();
 });
+
+test('Should render error for invalid submition', () => {
+    const wrapper = shallow(<ExpenseForm />);
+    expect(wrapper).toMatchSnapshot();
+    wrapper.find('form').simulate('submit', {
+        preventDefault: () => {}
+    });
+
+    expect(wrapper.state('error').length).toBeGreaterThan(0);
+    expect(wrapper).toMatchSnapshot();
+
+});
+
+test('Should set description value', () => {
+    const value = 'New description';
+    const wrapper = shallow(<ExpenseForm />);
+    wrapper.find('input').at(0).simulate('change', {
+        target: { value }
+    });
+
+    expect(wrapper.state('description')).toBe(value);
+});
+
+test('Should set note value', () => {
+    const value = 'This is a note';
+    const wrapper = shallow(<ExpenseForm />);
+    wrapper.find('textarea').simulate('change', {
+        target: { value }
+    });
+
+    expect(wrapper.state('note')).toBe(value);
+});
+
+test('Should set a valid amount value', () => {
+    const value = '22.5';
+    const wrapper = shallow(<ExpenseForm />);
+    wrapper.find('input').at(1).simulate('change', {
+        target: { value }
+    });
+
+   expect(wrapper.state('amount')).toBe(value);
+});
+
+test('Should set an invalid amount value', () => {
+    const value = '22.5333';
+    const wrapper = shallow(<ExpenseForm />);
+    wrapper.find('input').at(1).simulate('change', {
+        target: { value }
+    });
+
+    expect(wrapper.state('amount')).toBe('');
+});
