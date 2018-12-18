@@ -1,29 +1,35 @@
 const path = require('path');
 const public_dir = path.join(__dirname, 'public');
 
-module.exports = {
-    entry: './src/app.js',
-    output: {
-        path: public_dir,
-        filename: 'bundle.js'
-    },
-    module: {
-        rules: [{
-            loader: 'babel-loader',
-            test: /\.js$/,
-            exclude: /node_modules/
-        }, {
-            test: /\.s?css$/,
-            use: [
-                'style-loader',
-                'css-loader',
-                'sass-loader'
-            ]
-        }]
-    },
-    devtool: 'cheap-module-eval-source-map',
-    devServer: {
-        contentBase: public_dir,
-        historyApiFallback: true
-    }
+module.exports = (env) => {
+
+    const isProduction = env === 'production';
+
+    // console.log(env);
+    return {
+        entry: './src/app.js',
+        output: {
+            path: public_dir,
+            filename: 'bundle.js'
+        },
+        module: {
+            rules: [{
+                loader: 'babel-loader',
+                test: /\.js$/,
+                exclude: /node_modules/
+            }, {
+                test: /\.s?css$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader'
+                ]
+            }]
+        },
+        devtool: isProduction ? 'source-map' : 'cheap-module-eval-source-map',
+        devServer: {
+            contentBase: public_dir,
+            historyApiFallback: true
+        }
+    };
 };
