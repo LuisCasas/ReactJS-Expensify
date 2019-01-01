@@ -13,10 +13,10 @@ exports[`Should render ExpenseListItem component 1`] = `
     Battletoads
   </p>
   <p>
-    Amount: 
-    40
-     - Created at: 
-    -345600000
+    Amount:
+    $0.40
+    -
+    December 28th, 1969
   </p>
 </div>
 `;
