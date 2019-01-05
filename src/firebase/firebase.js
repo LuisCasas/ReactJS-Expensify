@@ -19,14 +19,12 @@ database.ref().set({
     console.log('Error: ', err);
 });
 
-// database.ref('age').set(29);
-// database.ref('location/city').set('Edinburgh');
+// database.ref('employed').remove().then(() => {
+//     console.log('employed removed from db');
+// }).catch((err) => {
+//     console.log('Error while deleting employed', err);
+// });
 
-database.ref('Attributes').set({
-    height: '185cm',
-    weight: '75kg'
-}).then(() => {
-    console.log('Attribute is saved');
-}).catch((err) => {
-    console.log('Attribute Error: ', err);
-});
+// another method to delete:
+// database.ref('employed').set(null);
+
