@@ -13,11 +13,20 @@ database.ref().set({
         country: 'Scotland',
         city: 'Glasgow'
     }
+}).then(() => {
+    console.log('Data is saved');
+}).catch((err) => {
+    console.log('Error: ', err);
 });
 
-database.ref('age').set(29);
-database.ref('location/city').set('Edinburgh');
+// database.ref('age').set(29);
+// database.ref('location/city').set('Edinburgh');
+
 database.ref('Attributes').set({
     height: '185cm',
     weight: '75kg'
+}).then(() => {
+    console.log('Attribute is saved');
+}).catch((err) => {
+    console.log('Attribute Error: ', err);
 });
