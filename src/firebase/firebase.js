@@ -5,21 +5,74 @@ firebase.initializeApp(config);
 
 const database = firebase.database();
 
-database.ref().set({
-    name: 'Andrew',
-    job: {
-        title: 'Software Developer',
-        company: 'Amazon'
-    }
+database.ref('expenses').push({
+    description: 'Test 1',
+    note: 'Blaaaaaaaa...',
+    amount: 3000,
+    createdAt: 400000
 });
 
-const onValueChange = database.ref().on('value', (snapshot) => {
-    console.log(snapshot.val());
+database.ref('expenses').push({
+    description: 'Test 2',
+    note: 'This is test 2',
+    amount: 200,
+    createdAt: 9000000
 });
 
-setTimeout(() => {
-    database.ref('job/company').set('Google');
-}, 12000);
+database.ref('expenses').push({
+    description: 'Test 3',
+    note: '3 notes here',
+    amount: 90,
+    createdAt: 400000
+});
+
+
+// database.ref().push({
+//     title: 'To do',
+//     body: 'Test ....'
+// });
+
+// const firebaseNotes = {
+//     notes: {
+//         skdasd: {
+//             title: 'Test',
+//             body: 'ABC 124'          
+//         },
+//         ods2r1: {
+//             title: 'Book',
+//             body: 'Book blablabla...'           
+//         }        
+//     }
+// };
+
+// const notes = [{
+//     id: '12',
+//     title: 'Test',
+//     body: 'ABC 124'
+// },{
+//     id: '98',
+//     title: 'Book',
+//     body: 'Book blablabla...'   
+// }];
+
+// database.ref('notes').set(notes);
+
+
+// database.ref().set({
+//     name: 'Andrew',
+//     job: {
+//         title: 'Software Developer',
+//         company: 'Amazon'
+//     }
+// });
+
+// const onValueChange = database.ref().on('value', (snapshot) => {
+//     console.log(snapshot.val());
+// });
+
+// setTimeout(() => {
+//     database.ref('job/company').set('Google');
+// }, 12000);
 
 
 // const onValueChange = database.ref().on('value', (snapshot) => {
