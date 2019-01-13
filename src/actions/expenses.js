@@ -42,5 +42,19 @@ export const setExpenses = (expenses) => ({
 });
 
 export const startSetExpenses = () => {
-
+    return (dispatch) => {
+        return database.ref('expenses').once('value').then((snapshot) => {
+            const expenses = [];
+            
+            snapshot.forEach((child) => {
+                expenses.push({
+                    id: child.key,
+                    ...child.val()
+                });
+            });
+    
+            // console.log(expenses);
+            dispatch(setExpenses(expenses));
+        });    
+    };
 };
