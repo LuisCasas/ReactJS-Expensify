@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { startSetExpenses } from './actions/expenses';
 import AppRouter, { history } from './routers/AppRouter';
 import configureStore from './store/configure';
+import { login, logout } from './actions/auth';
 import 'react-dates/lib/css/_datepicker.css';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
@@ -28,6 +29,7 @@ ReactDOM.render(<p>Loading data...</p>, document.getElementById('app'));
 
 firebase.auth().onAuthStateChanged((user) => {
     if(user){
+        store.dispatch(login(user.id));
         store.dispatch(startSetExpenses()).then(() => {
             renderApp();
             if(history.location.pathname === '/'){
@@ -35,6 +37,7 @@ firebase.auth().onAuthStateChanged((user) => {
             }
         });        
     } else {
+        store.dispatch(logout());
         renderApp();
         history.push('/');
     }
