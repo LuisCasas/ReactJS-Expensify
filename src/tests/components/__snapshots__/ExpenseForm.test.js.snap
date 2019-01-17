@@ -100,7 +100,8 @@ exports[`Should render ExpenseForm component 1`] = `
       value=""
     />
     <button>
-      Add Expense
+      Add
+       Expense
     </button>
   </form>
 </div>
@@ -206,7 +207,8 @@ exports[`Should render ExpenseForm component with values from a expense 1`] = `
       value=""
     />
     <button>
-      Add Expense
+      Edit
+       Expense
     </button>
   </form>
 </div>
@@ -312,7 +314,8 @@ exports[`Should render error for invalid submition 1`] = `
       value=""
     />
     <button>
-      Add Expense
+      Add
+       Expense
     </button>
   </form>
 </div>
@@ -421,7 +424,8 @@ exports[`Should render error for invalid submition 2`] = `
       value=""
     />
     <button>
-      Add Expense
+      Add
+       Expense
     </button>
   </form>
 </div>

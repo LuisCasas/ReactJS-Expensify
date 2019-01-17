@@ -19,13 +19,6 @@ exports[`Should render Header 1`] = `
   >
     Add Expense
   </NavLink>
-  <NavLink
-    activeClassName="is-active"
-    aria-current="page"
-    to="/help"
-  >
-    Help
-  </NavLink>
   <button
     onClick={[Function]}
   >
